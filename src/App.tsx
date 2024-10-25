@@ -9,26 +9,28 @@ import { Skills } from './pages/Skills';
 import { Projects } from './pages/Projects';
 import { Certifications } from './pages/Certifications';
 
+// Define the router with routes for each page
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Layout />,
-    children: [
-      { index: true, element: <Home /> },
-      { path: "work", element: <Work /> },
-      { path: "education", element: <EducationPage /> },
-      { path: "skills", element: <Skills /> },
-      { path: "certification", element: <Certifications /> },
-      { path: "projects", element: <Projects /> }
+    path: "/", // Root path
+    element: <Layout />, // Uses Layout component for the main structure
+    children: [ // Nested routes inside Layout
+      { index: true, element: <Home /> }, // Default route renders the Home page
+      { path: "work", element: <Work /> }, // Route for Work page
+      { path: "education", element: <EducationPage /> }, // Route for Education page
+      { path: "skills", element: <Skills /> }, // Route for Skills page
+      { path: "certification", element: <Certifications /> }, // Route for Certifications page
+      { path: "projects", element: <Projects /> } // Route for Projects page
     ]
   }
 ]);
 
+// Main App component rendering global styles and router
 export const App: React.FC = () => {
   return (
     <>
-      <GlobalStyles />
-      <RouterProvider router={router} />
+      <GlobalStyles /> {/* GlobalStyles for consistent styling across the app */}
+      <RouterProvider router={router} /> {/* Provides routing context to the app */}
     </>
   );
 };

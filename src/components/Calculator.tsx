@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
+// Container style for the main calculator layout
 const Container = styled.div`
   max-width: 30vw; 
   margin: 0 auto;
@@ -10,12 +11,14 @@ const Container = styled.div`
   background-color: white;
 `;
 
+// Title style for the calculator header
 const Title = styled.h2`
   text-align: center;
   color: #333333;
   margin-top: 0;
 `;
 
+// Input style for number input fields
 const Input = styled.input`
   padding: 0.5rem; 
   margin: 0.25rem; 
@@ -29,6 +32,7 @@ const Input = styled.input`
   }
 `;
 
+// ButtonContainer style for aligning calculator buttons in a grid
 const ButtonContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -36,6 +40,7 @@ const ButtonContainer = styled.div`
   margin-top: 1rem; 
 `;
 
+// Button style for calculator operations
 const Button = styled.button`
   padding: 0.5rem 1rem; 
   border-radius: 0.25rem; 
@@ -53,6 +58,7 @@ const Button = styled.button`
   }
 `;
 
+// ClearButton style for the reset button with unique styling
 const ClearButton = styled(Button)`
   background-color: maroon;
   color: white;
@@ -63,6 +69,7 @@ const ClearButton = styled(Button)`
   }
 `;
 
+// Result style for displaying calculation results with dynamic color
 const Result = styled.div`
   text-align: center;
   font-size: 1.25rem;
@@ -72,22 +79,26 @@ const Result = styled.div`
   color: ${props => props.color};
 `;
 
+// Calculator component with basic arithmetic operations
 const Calculator = () => {
-  const [firstNum, setFirstNum] = useState('');
-  const [secondNum, setSecondNum] = useState('');
-  const [result, setResult] = useState('');
-  const [resultColor, setResultColor] = useState('black');
+  const [firstNum, setFirstNum] = useState(''); // Stores first number input
+  const [secondNum, setSecondNum] = useState(''); // Stores second number input
+  const [result, setResult] = useState(''); // Stores calculation result
+  const [resultColor, setResultColor] = useState('black'); // Sets result text color
 
+  // Function to perform selected arithmetic operation
   const performOperation = (operation: string) => {
     const num1 = parseFloat(firstNum);
     const num2 = parseFloat(secondNum);
     
+    // Check for valid numbers
     if (isNaN(num1) || isNaN(num2)) {
       setResult('Please enter valid numbers');
       setResultColor('black');
       return;
     }
 
+    // Execute operation based on button clicked
     let calculatedResult;
     switch (operation) {
       case 'add':
@@ -114,10 +125,12 @@ const Calculator = () => {
         return;
     }
 
+    // Update result display and set color based on value
     setResult(calculatedResult.toString());
     setResultColor(calculatedResult < 0 ? 'red' : 'black');
   };
 
+  // Function to reset inputs and result display
   const reset = () => {
     setFirstNum('');
     setSecondNum('');
@@ -125,16 +138,19 @@ const Calculator = () => {
     setResultColor('black');
   };
 
+  // Component rendering
   return (
     <Container>
       <Title>Calculator</Title>
       <div>
+        {/* First number input */}
         <Input
           type="number"
           value={firstNum}
           onChange={(e) => setFirstNum(e.target.value)}
           placeholder="Enter first number"
         />
+        {/* Second number input */}
         <Input
           type="number"
           value={secondNum}
@@ -143,6 +159,7 @@ const Calculator = () => {
         />
       </div>
       
+      {/* Buttons for each operation */}
       <ButtonContainer>
         <Button onClick={() => performOperation('add')}>+</Button>
         <Button onClick={() => performOperation('subtract')}>-</Button>
@@ -152,6 +169,7 @@ const Calculator = () => {
         <ClearButton onClick={reset}>Clear</ClearButton>
       </ButtonContainer>
 
+      {/* Display calculation result */}
       <Result color={resultColor}>
         {result}
       </Result>
