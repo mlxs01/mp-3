@@ -10,19 +10,14 @@ import { Projects } from './pages/Projects';
 import { Certifications } from './pages/Certifications';
 
 // Define the router with routes for each page
+// Please note: the newest version, v6, changed Component to element for flexibility
 const router = createBrowserRouter([
-  {
-    path: "/", // Root path
-    element: <Layout />, // Uses Layout component for the main structure
-    children: [ // Nested routes inside Layout
-      { index: true, element: <Home /> }, // Default route renders the Home page
-      { path: "work", element: <Work /> }, // Route for Work page
-      { path: "education", element: <EducationPage /> }, // Route for Education page
-      { path: "skills", element: <Skills /> }, // Route for Skills page
-      { path: "certification", element: <Certifications /> }, // Route for Certifications page
-      { path: "projects", element: <Projects /> } // Route for Projects page
-    ]
-  }
+  { path: "/", element: <Layout><Home /></Layout> },
+  { path: "/work", element: <Layout><Work /></Layout> },
+  { path: "/education", element: <Layout><EducationPage /></Layout> },
+  { path: "/skills", element: <Layout><Skills /></Layout> },
+  { path: "/certification", element: <Layout><Certifications /></Layout> },
+  { path: "/projects", element: <Layout><Projects /></Layout> },
 ]);
 
 // Main App component rendering global styles and router

@@ -1,8 +1,11 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { ReactNode } from 'react';
 import { Navigation } from './Navigation';
 import styled from 'styled-components';
 import hallowImg from '../../assets/hallow.jpeg';
+
+interface LayoutProps {
+  children: ReactNode;
+}
 
 // Container for the entire layout, setting minimum height and layout direction
 const LayoutContainer = styled.div`
@@ -56,7 +59,7 @@ const Footer = styled.footer`
 `;
 
 // Layout component to structure the page with header, navigation, main content, and footer
-export const Layout: React.FC = () => {
+export const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <LayoutContainer>
       <Header>
@@ -66,7 +69,7 @@ export const Layout: React.FC = () => {
       <MainContent>
         <Navigation /> {/* Navigation component included on the left side */}
         <ContentArea>
-          <Outlet /> {/* Placeholder for nested routes' content */}
+          {children}
         </ContentArea>
       </MainContent>
       <Footer>
