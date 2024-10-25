@@ -21,6 +21,8 @@ const router = createBrowserRouter([
 ]);
 
 // Main App component rendering global styles and router
+// Given we are using Typescript and there is a sharp increase in amount and 
+  // complexity of children components, I chose the flexibility of React.FC instead of default func  
 export const App: React.FC = () => {
   return (
     <>
