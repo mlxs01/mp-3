@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
-  /* As Requested :D *\
+  /* As Requested :D */
   * {
     margin: 0;
     padding: 0;
